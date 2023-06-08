@@ -10,7 +10,6 @@ This is a very basic proof of concept that accompanies the <<<>>> blogpost. For 
 
 ## Table of Contents
 - [Getting Started](#getting-started)
-- [Configuration](#configuration)
 - [Usage](#usage)
 - [License](#license)
 
@@ -18,23 +17,10 @@ This is a very basic proof of concept that accompanies the <<<>>> blogpost. For 
 
 To get started with QA-Docs-Langchain, you can follow these steps:
 
-### Clone the Repository
+1. Clone this repository
 
-1. Click on the green "Code" button and copy the repository URL.
-
-2. Open a terminal on your local machine and navigate to the directory where you want to clone the repository.
-
-3. Run the following command to clone the repository:
-
-   ```shell git clone <repository-url>```
-
-### Configuration
-
-Before running the project, make sure to configure the required environment variables by adding them to the **config.ini** file.
-
-Replace the placeholders (add-your-openai-api-key-here, add-your-openai-deployment-here, add-your-openai-api-type-here, 
-
-add-your-openai-api-version-here, add-your-openai-base-here, add-your-weaviate-joplin-sandbox-url-here) with your actual values.
+2. Before running the project, make sure to obtain and set the following enviroment variables:
+OPENAI_API_KEY, OPENAI_DEPLOYMENT, OPENAI_BASE, OPENAI_API_TYPE (= azure), OPENAI_API_VERSION, WEAVIATE_JOPLIN_SANDBOX_URL
 
 ### Usage
 
@@ -44,9 +30,10 @@ For example of params and other functionalities check out **example_qa_chain_go_
 
     To initialize the JoplinChatbot class, use the following code snippet in your implementation:
     ```python
-      from qa_docs_langchain import JoplinChatbot, get_key_from_config
+      import os
+      from qa_docs_langchain import JoplinChatbot
 
-      jchat = JoplinChatbot(get_key_from_config("WEAVIATE_JOPLIN_SANDBOX_URL"), **params)
+      jchat = JoplinChatbot(os.environ.get("WEAVIATE_JOPLIN_SANDBOX_URL"), **params)
 
 2. Indexing into vectorestores
     ```python

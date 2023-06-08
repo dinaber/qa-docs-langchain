@@ -22,7 +22,7 @@ To get started with QA-Docs-Langchain, you can follow these steps:
 2. Before running the project, make sure to obtain and set the following enviroment variables:
 OPENAI_API_KEY, OPENAI_DEPLOYMENT, OPENAI_BASE, OPENAI_API_TYPE (= azure), OPENAI_API_VERSION, WEAVIATE_JOPLIN_SANDBOX_URL
 
-### Usage
+## Usage
 
 The following examples demonstrate how to use the QA-Docs-Langchain functionality:
 For example of params and other functionalities check out **example_qa_chain_go_book.ipynb **notebook.
@@ -45,7 +45,7 @@ For example of params and other functionalities check out **example_qa_chain_go_
       query = "What is the purpose of the Langchain project?"
       result = jchat.query(query)
       
-### License      
+## License      
 
 This repository is licensed under the MIT License. You are free to use, modify, and distribute this codebase as per the terms of the license.
 If you have any questions or need further assistance, please don't hesitate to reach out to me.

@@ -18,18 +18,6 @@ from langchain.llms import AzureOpenAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Weaviate
 
-from mysystemfuncs import get_key_from_config
-
-
-def set_env_vars():
-    os.environ["OPENAI_API_TYPE"] = get_key_from_config('OPENAI_API_TYPE')
-    os.environ["OPENAI_API_VERSION"] = get_key_from_config('OPENAI_API_VERSION')
-    os.environ["OPENAI_API_BASE"] = get_key_from_config('OPENAI_API_BASE')
-    os.environ["OPENAI_API_KEY"] = get_key_from_config('OPENAI_API_KEY')
-
-
-set_env_vars()
-
 
 class JoplinChatbot:
     def __init__(self, sandbox_url, index_name='Joplin_test',
@@ -49,7 +37,6 @@ class JoplinChatbot:
         :param embedder_args: Additional arguments for the embedder class (optional).
         :param chain_type: Type of chain to use (defaults to "stuff").
         """
-        set_env_vars()
         self._index_name = index_name
         self._client = weaviate.Client(sandbox_url)
 
@@ -128,6 +115,6 @@ class JoplinChatbot:
         :param text: The query text.
         :return: The result of the query.
         """
-        deployment_name = get_key_from_config('OPENAI_DEPLOYMENT')  # todo: make sure this deployment is really running
+        deployment_name = os.environ.get('OPENAI_DEPLOYMENT')  # todo: make sure this deployment is really running
         llm = AzureOpenAI(deployment_name=deployment_name)
         return self.db.query(text, chain_type=self.chain_type, llm=llm)
